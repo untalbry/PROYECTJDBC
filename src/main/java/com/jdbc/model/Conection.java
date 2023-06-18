@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Conection {
-    private final String URL = "<URL>";
-    private final String USERNAME = "<USERNAME>";
-    private final String PASSWORD = "<PASSWORD>";
+    private static final String URL = "<URL>";
+    private static final String USERNAME = "<USERNAME>";
+    private static final String PASSWORD = "<PASSWORD>";
 
     // Objeto de tipo connection para manejar la DB
     protected Connection con = null;
