@@ -5,8 +5,6 @@
 package com.jdbc.view;
 
 import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -17,8 +15,6 @@ public class View extends javax.swing.JFrame {
     /**
      * Creates new form View
      */
-    private String txt;
-
     public View() {
         initComponents();
     }
@@ -160,8 +156,6 @@ public class View extends javax.swing.JFrame {
     }
     /*
      * private void JButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-     * txt = jTextField1.getText();
-     * System.out.println(txt);
      * 
      * }
      */
