@@ -1,15 +1,15 @@
 package com.jdbc.model;
 
-import com.jdbc.model.book.Book;
+import java.util.List;
 
 public interface DAO<Type> {
     List<Type> getAll();
 
-    Book getById(int id);
+    Type getById(int id);
 
-    int save(Book book);
+    int save(Type type);
 
-    int upadate(Book book);
+    int update(Type type);
 
-    int delete(int bookId);
+    int delete(Type type);
 }

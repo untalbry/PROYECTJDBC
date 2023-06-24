@@ -3,7 +3,7 @@ package com.jdbc.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Conection implements Connection {
+public class Conection {
     private final String URL = "<URL>";
     private final String USERNAME = "<USERNAME>";
     private final String PASSWORD = "<PASSWORD>";
