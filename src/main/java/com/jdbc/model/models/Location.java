@@ -1,11 +1,20 @@
 package com.jdbc.model.models;
 
 public class Location {
+    private int locationId;
     private String municipality;
     private String state;
     private String country;
 
     public Location() {
+    }
+
+    public int getLocationId() {
+        return this.locationId;
+    }
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
     }
 
     public String getMunicipality() {
