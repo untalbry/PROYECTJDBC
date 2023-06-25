@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS edicion(
     idioma VARCHAR(50) NOT NULL,
     genero VARCHAR(25) NOT NULL,
     sipnopsis VARCHAR(100) NOT NULL,
-    numero_pagians INT UNSIGNED NOT NULL,
+    numero_paginas INT UNSIGNED NOT NULL,
     FOREIGN KEY (editorial_id) REFERENCES editorial(editorial_id) ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS libros(
@@ -96,3 +96,6 @@ CREATE TABLE IF NOT EXISTS empleados(
     FOREIGN KEY (sucursal_id) REFERENCES sucursales(sucursal_id) ON DELETE CASCADE
 );
 SHOW TABLES; 
+SELECT libros.titulo, autores.nombre, autores.apellidos
+FROM libros
+JOIN autores ON libros.autor_id = autores.autor_id;
