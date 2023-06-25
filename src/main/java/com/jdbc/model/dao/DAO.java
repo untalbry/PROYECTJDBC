@@ -1,4 +1,4 @@
-package com.jdbc.model;
+package com.jdbc.model.dao;
 
 import java.util.List;
 

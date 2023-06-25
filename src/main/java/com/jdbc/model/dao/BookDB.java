@@ -1,4 +1,4 @@
-package com.jdbc.model.book;
+package com.jdbc.model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jdbc.model.DAO;
+import com.jdbc.model.dao.DAO;
+import com.jdbc.model.models.Book;
 import com.jdbc.model.Conection;
 
 public class BookDB extends Conection implements DAO<Book> {
