@@ -1,4 +1,4 @@
-package com.jdbc.model.book;
+package com.jdbc.model.models;
 
 public class Book {
     private int libroId;
