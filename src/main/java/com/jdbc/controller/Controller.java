@@ -1,31 +1,37 @@
 package com.jdbc.controller;
 
-import com.jdbc.model.Model;
 import com.jdbc.view.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.ConnectException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Controller {
     private View view;
-    private Model model;
     private String query;
 
-    public Controller(Model model, View view) {
-        this.model = model;
-        this.view = view;
-        view.setVisible(true);
+    public Controller(View view) {
+        try {
+            Connection connection = DriverManager.getConnection("", "", "");
+            this.view = view;
+            view.setVisible(true);
 
-        view.getJButton1().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                JButton1ActionPerformed(evt);
-            }
-        });
-        view.getJButton2().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                JButton2ActionPerformed(evt);
-            }
-        });
+            view.getJButton1().addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    JButton1ActionPerformed(evt);
+                }
+            });
+            view.getJButton2().addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    JButton2ActionPerformed(evt);
+                }
+            });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
