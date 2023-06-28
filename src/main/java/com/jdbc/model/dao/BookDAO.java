@@ -7,6 +7,9 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.naming.spi.DirStateFactory.Result;
+
 import com.jdbc.model.TransferObject.Book;
 
 public class BookDAO implements DAO<Book> {
@@ -34,7 +37,7 @@ public class BookDAO implements DAO<Book> {
             if (ps != null) {
                 ps.close();
             }
-            if(rs != null){
+            if (rs != null) {
                 rs.close();
             }
         }
@@ -44,7 +47,27 @@ public class BookDAO implements DAO<Book> {
 
     @Override
     public Book getById(int id) throws SQLException {
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        String sql = "SELECT * FROM libros WHERE libros_id = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Book();
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
     }
 
     @Override
