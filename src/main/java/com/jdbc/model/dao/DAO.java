@@ -1,15 +1,16 @@
-package com.jdbc.model;
+package com.jdbc.model.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface DAO<Type> {
-    List<Type> getAll();
+    List<Type> getAll() throws SQLException;
 
-    Type getById(int id);
+    Type getById(int id) throws SQLException;
 
-    int save(Type type);
+    void save(Type type) throws SQLException;
 
-    int update(Type type);
+    void update(Type type, String[] params) throws SQLException;
 
-    int delete(Type type);
+    void delete(Type type) throws SQLException;
 }

@@ -1,23 +1,24 @@
-package com.jdbc.model.models;
+package com.jdbc.model.TransferObject;
 
 public class Book {
-    private int libroId;
+    private int bookId;
     private int authorId;
-    private int sucursalId;
+    private int branchOfficeId;
     private int editionId;
     private String title;
     private int stock;
     private double price;
 
     public Book() {
+
     };
 
-    public int getLibroId() {
-        return this.libroId;
+    public int getBookId() {
+        return this.bookId;
     }
 
-    public void setLibroId(int libroId) {
-        this.libroId = libroId;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public int getAuthorId() {
@@ -28,12 +29,12 @@ public class Book {
         this.authorId = authorId;
     }
 
-    public int getSucursalId() {
-        return this.sucursalId;
+    public int getBranchOfficeId() {
+        return branchOfficeId;
     }
 
-    public void setSucursalId(int sucursalId) {
-        this.sucursalId = sucursalId;
+    public void setBranchOfficeId(int branchOfficeId) {
+        this.branchOfficeId = branchOfficeId;
     }
 
     public int getEditionId() {
