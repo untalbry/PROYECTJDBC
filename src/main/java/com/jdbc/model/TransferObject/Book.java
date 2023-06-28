@@ -1,4 +1,4 @@
-package com.jdbc.model.models;
+package com.jdbc.model.TransferObject;
 
 public class Book {
     private int libroId;
