@@ -1,9 +1,11 @@
 package com.jdbc.model.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.jdbc.model.TransferObject.Book;
 
@@ -16,7 +18,28 @@ public class BookDAO implements DAO<Book> {
 
     @Override
     public List<Book> getAll() throws SQLException {
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM libros";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                books.add(new Book());
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if(rs != null){
+                rs.close();
+            }
+        }
+
+        return books;
     }
 
     @Override
@@ -75,7 +98,7 @@ public class BookDAO implements DAO<Book> {
         try {
             connection.setAutoCommit(false);
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, book.getLibroId());
+            ps.setInt(1, book.getBookId());
             ps.executeUpdate();
             connection.commit();
         } catch (Exception e) {

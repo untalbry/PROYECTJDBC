@@ -14,6 +14,10 @@ public class BookService {
         this.dao = new BookDAO(connection);
     }
 
+    public void getAll() throws SQLException {
+        dao.getAll();
+    }
+
     public void addBook(Book book) throws SQLException {
         dao.save(book);
     }
