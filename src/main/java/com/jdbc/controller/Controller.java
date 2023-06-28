@@ -1,5 +1,6 @@
 package com.jdbc.controller;
 
+import com.jdbc.model.service.BookService;
 import com.jdbc.view.View;
 
 import java.awt.event.ActionEvent;
@@ -16,6 +17,8 @@ public class Controller {
     public Controller(View view) {
         try {
             Connection connection = DriverManager.getConnection("", "", "");
+            BookService bookService = new BookService(connection);
+
             this.view = view;
             view.setVisible(true);
 
