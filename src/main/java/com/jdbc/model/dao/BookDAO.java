@@ -7,10 +7,8 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.naming.spi.DirStateFactory.Result;
-
 import com.jdbc.model.TransferObject.Book;
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
 
 public class BookDAO implements DAO<Book> {
     private Connection connection;
@@ -132,6 +130,41 @@ public class BookDAO implements DAO<Book> {
                 ps.close();
             }
             connection.setAutoCommit(true);
+        }
+    }
+
+    @Override
+    public Book getByName(String name) throws SQLException {
+        String sql = "SELECT * FROM libros WHERE titulo = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            connection.setAutoCommit(false);
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Book(
+                        rs.getInt("libro_id"),
+                        rs.getInt("autor_id"),
+                        rs.getString("titulo"),
+                        rs.getString("descripcion"),
+                        rs.getInt("paginas"));
+            } else {
+                System.out.println("Regresando NULL");
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en query");
+            throw e;
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
         }
     }
 
