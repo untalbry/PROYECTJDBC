@@ -135,26 +135,27 @@ public class BookDAO implements DAO<Book> {
 
     @Override
     public Book getByName(String name) throws SQLException {
-        String sql = "SELECT * FROM libros WHERE name = ?";
+        String sql = "SELECT * FROM libros WHERE titulo = ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             connection.setAutoCommit(false);
             ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+
             rs = ps.executeQuery();
             if (rs.next()) {
                 return new Book(
                         rs.getInt("libro_id"),
                         rs.getInt("autor_id"),
-                        rs.getInt("sucursal_id"),
-                        rs.getInt("edicion_id"),
                         rs.getString("titulo"),
-                        rs.getInt("stock"),
-                        rs.getDouble("precio"));
+                        rs.getString("descripcion"),
+                        rs.getInt("paginas"));
             } else {
                 return null;
             }
         } catch (SQLException e) {
+            System.out.println("Error en query");
             throw e;
         } finally {
             if (ps != null) {

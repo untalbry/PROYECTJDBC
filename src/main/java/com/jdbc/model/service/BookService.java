@@ -18,6 +18,14 @@ public class BookService {
         dao.getAll();
     }
 
+    public Book getById(int id) throws SQLException {
+        return dao.getById(id);
+    }
+
+    public Book getByName(String name) throws SQLException {
+        return dao.getByName(name);
+    }
+
     public void addBook(Book book) throws SQLException {
         dao.save(book);
     }

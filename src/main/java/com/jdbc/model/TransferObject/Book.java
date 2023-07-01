@@ -3,23 +3,19 @@ package com.jdbc.model.TransferObject;
 public class Book {
     private int bookId;
     private int authorId;
-    private int branchOfficeId;
-    private int editionId;
     private String title;
-    private int stock;
-    private double price;
+    private String description;
+    private int pages;
 
     public Book() {
     };
 
-    public Book(int bookId, int authorId, int branchOfficeId, int editionId, String title, int stock, double price) {
+    public Book(int bookId, int authorId, String title, String description, int pages) {
         this.bookId = bookId;
         this.authorId = authorId;
-        this.branchOfficeId = branchOfficeId;
-        this.editionId = editionId;
         this.title = title;
-        this.stock = stock;
-        this.price = price;
+        this.description = description;
+        this.pages = pages;
     };
 
     public int getBookId() {
@@ -38,22 +34,6 @@ public class Book {
         this.authorId = authorId;
     }
 
-    public int getBranchOfficeId() {
-        return branchOfficeId;
-    }
-
-    public void setBranchOfficeId(int branchOfficeId) {
-        this.branchOfficeId = branchOfficeId;
-    }
-
-    public int getEditionId() {
-        return this.editionId;
-    }
-
-    public void setEditionId(int editionId) {
-        this.editionId = editionId;
-    }
-
     public String getTitle() {
         return this.title;
     }
@@ -62,20 +42,20 @@ public class Book {
         this.title = title;
     }
 
-    public int getStock() {
-        return this.stock;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public double getPrice() {
-        return this.price;
+    public int getPages() {
+        return pages;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPages(int pages) {
+        this.pages = pages;
     }
 
 }
