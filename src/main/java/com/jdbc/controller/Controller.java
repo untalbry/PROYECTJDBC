@@ -23,7 +23,7 @@ public class Controller {
                     "root",
                     "Cognito_1407.");
             System.out.println("Conexión exitosa");
-            BookService bookService = new BookService(connection);
+            bookService = new BookService(connection);
 
             this.view = view;
             view.setVisible(true);

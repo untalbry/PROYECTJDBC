@@ -152,6 +152,7 @@ public class BookDAO implements DAO<Book> {
                         rs.getString("descripcion"),
                         rs.getInt("paginas"));
             } else {
+                System.out.println("Regresando NULL");
                 return null;
             }
         } catch (SQLException e) {
