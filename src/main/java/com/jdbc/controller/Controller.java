@@ -5,7 +5,6 @@ import com.jdbc.view.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,10 +12,15 @@ import java.sql.SQLException;
 public class Controller {
     private View view;
     private String query;
+    BookService bookService;
 
     public Controller(View view) {
         try {
-            Connection connection = DriverManager.getConnection("", "", "");
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/libreria",
+                    "root",
+                    "Cognito_1407.");
+            System.out.println("Conexión exitosa");
             BookService bookService = new BookService(connection);
 
             this.view = view;
@@ -33,6 +37,7 @@ public class Controller {
                 }
             });
         } catch (SQLException e) {
+            System.out.println("Error al conectar con la base de datos: ");
             e.printStackTrace();
         }
 

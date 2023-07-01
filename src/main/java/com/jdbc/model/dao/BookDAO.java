@@ -7,9 +7,6 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.naming.spi.DirStateFactory.Result;
-
 import com.jdbc.model.TransferObject.Book;
 
 public class BookDAO implements DAO<Book> {
