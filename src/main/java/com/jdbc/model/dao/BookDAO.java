@@ -143,7 +143,14 @@ public class BookDAO implements DAO<Book> {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return new Book();
+                return new Book(
+                        rs.getInt("libro_id"),
+                        rs.getInt("autor_id"),
+                        rs.getInt("sucursal_id"),
+                        rs.getInt("edicion_id"),
+                        rs.getString("titulo"),
+                        rs.getInt("stock"),
+                        rs.getDouble("precio"));
             } else {
                 return null;
             }
