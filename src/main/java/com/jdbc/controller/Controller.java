@@ -60,8 +60,6 @@ public class Controller {
         } catch (SQLException e) {
             System.out.println("Fallo en Button");
             e.getStackTrace();
-        } catch (NullPointerException n) {
-            System.out.println("Libro no encontrado");
         }
 
     }
