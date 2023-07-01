@@ -10,7 +10,16 @@ public class Book {
     private double price;
 
     public Book() {
+    };
 
+    public Book(int bookId, int authorId, int branchOfficeId, int editionId, String title, int stock, double price) {
+        this.bookId = bookId;
+        this.authorId = authorId;
+        this.branchOfficeId = branchOfficeId;
+        this.editionId = editionId;
+        this.title = title;
+        this.stock = stock;
+        this.price = price;
     };
 
     public int getBookId() {
