@@ -1,31 +1,47 @@
 package com.jdbc.controller;
 
-import com.jdbc.model.Model;
+import com.jdbc.model.TransferObject.Book;
+import com.jdbc.model.service.BookService;
 import com.jdbc.view.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Controller {
     private View view;
-    private Model model;
     private String query;
+    BookService bookService;
+    Book book;
 
-    public Controller(Model model, View view) {
-        this.model = model;
-        this.view = view;
-        view.setVisible(true);
+    public Controller(View view) {
+        try {
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/libreria",
+                    "root",
+                    "Cognito_1407.");
+            System.out.println("Conexión exitosa");
+            bookService = new BookService(connection);
 
-        view.getJButton1().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                JButton1ActionPerformed(evt);
-            }
-        });
-        view.getJButton2().addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                JButton2ActionPerformed(evt);
-            }
-        });
+            this.view = view;
+            view.setVisible(true);
+
+            view.getJButton1().addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    JButton1ActionPerformed(evt);
+                }
+            });
+            view.getJButton2().addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    JButton2ActionPerformed(evt);
+                }
+            });
+        } catch (SQLException e) {
+            System.out.println("Error al conectar con la base de datos: ");
+            e.printStackTrace();
+        }
 
     }
 
@@ -36,7 +52,18 @@ public class Controller {
 
     private void JButton2ActionPerformed(ActionEvent evt) {
         this.query = view.getTxt();
-        System.out.println(query);
+        System.out.println("Buscando: " + query);
+        try {
+            book = bookService.getByName(query);
+            System.out.println("Libro encontrado: ");
+            System.out.println(book.getTitle());
+        } catch (SQLException e) {
+            System.out.println("Fallo en Button");
+            e.getStackTrace();
+        } catch (NullPointerException n) {
+            System.out.println("Libro no encontrado");
+        }
+
     }
 
 }
