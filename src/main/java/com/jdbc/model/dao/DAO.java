@@ -8,6 +8,8 @@ public interface DAO<Type> {
 
     Type getById(int id) throws SQLException;
 
+    Type getByName(String name) throws SQLException;
+
     void save(Type type) throws SQLException;
 
     void update(Type type, String[] params) throws SQLException;

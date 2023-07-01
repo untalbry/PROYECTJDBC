@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.jdbc.model.TransferObject.Book;
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
 
 public class BookDAO implements DAO<Book> {
     private Connection connection;
@@ -129,6 +130,32 @@ public class BookDAO implements DAO<Book> {
                 ps.close();
             }
             connection.setAutoCommit(true);
+        }
+    }
+
+    @Override
+    public Book getByName(String name) throws SQLException {
+        String sql = "SELECT * FROM libros WHERE name = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            connection.setAutoCommit(false);
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Book();
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
         }
     }
 
